@@ -1,0 +1,236 @@
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #a07d5a;
+  --accent-color: #d35400;
+  --text-color: #333333;
+  --bg-color: #f4f4f4;
+  --card-bg: #ffffff;
+  --font-main: 'Inter', 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+  --font-serif: 'Noto Serif JP', 'Mincho', serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  line-height: 1.4;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ページ単位で区切るためのクラス */
+.a4-page {
+  width: 100%;
+  padding: 10mm 15mm;
+  background: var(--card-bg);
+  position: relative;
+  margin: 2rem auto;
+  max-width: 210mm;
+  min-height: 297mm;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 12mm;
+  }
+  
+  body {
+    background-color: transparent;
+  }
+
+  .a4-page {
+    margin: 0;
+    max-width: none;
+    min-height: 0; 
+    box-shadow: none;
+    background: transparent;
+    border-radius: 0;
+    padding: 0; 
+    page-break-after: always;
+    break-after: page;
+  }
+  
+  .a4-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Header & Typography */
+header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--secondary-color);
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.property-info {
+  background: #fdfdfd;
+  border: 1px solid #eaeaea;
+  padding: 0.6rem;
+  border-radius: 4px;
+  color: #444;
+  margin-bottom: 1rem;
+  text-align: left;
+  border-left: 4px solid var(--secondary-color);
+}
+
+.address-item {
+  margin-bottom: 0.1rem;
+}
+
+.address-item.ja { font-weight: 600; font-size: 0.95rem; }
+.address-item.en, .address-item.zh, .address-item.ko { font-size: 0.75rem; color: #666; }
+
+/* Map Section */
+.map-section {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  max-height: 150px;
+}
+.map-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Route Info */
+.route-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  flex: 1;
+}
+
+.route-step {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  display: flex !important;
+  flex-direction: row; /* 横並びレイアウトに変更 */
+  align-items: stretch; /* 写真とテキストのコンテナの高さを合わせる */
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+  min-height: 250px; /* ある程度の高さを確保して写真を大きく見せる */
+}
+
+.route-step-img {
+  width: 45%; /* 写真の幅 */
+  background-color: #f8f8f8;
+  border-right: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.route-step-img img {
+  width: 100%;
+  height: 100%; 
+  display: block;
+  object-fit: cover; /* 縦長写真に合わせて空間を埋め尽くすように綺麗に表示 */
+  /* 必要に応じて object-fit: contain; に変更することも可能だが、横並びなら cover の方が美しい */
+}
+
+.route-step-content {
+  width: 55%; /* テキストの幅 */
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 縦方向の中央寄せ */
+}
+
+.route-step-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 0.4rem;
+}
+
+.step-number {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--primary-color);
+  padding: 3px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+h2 {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.lang-group {
+  margin-bottom: 0.5rem;
+}
+
+.lang-group:last-child {
+  margin-bottom: 0;
+}
+
+.lang-group p {
+  font-size: 0.85rem;
+  color: #333;
+  margin-bottom: 0;
+  line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+}
+
+.lang-group .lang-label {
+  display: inline-block;
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--secondary-color);
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-right: 6px;
+  margin-top: 3px;
+}
+
+footer {
+  margin-top: auto; 
+  text-align: center;
+  font-size: 0.8rem;
+  color: #888;
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
