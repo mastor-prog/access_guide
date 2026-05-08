@@ -321,7 +321,7 @@ footer {
   }
 
   .route-step {
-    flex-direction: column;
+    flex-direction: column-reverse;
     min-height: auto;
   }
 
@@ -329,7 +329,7 @@ footer {
     width: 100%;
     aspect-ratio: 16 / 9;
     border-right: none;
-    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
   }
   
   .route-step-img img {
